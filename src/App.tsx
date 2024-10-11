@@ -11,8 +11,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/details/:id" element={<Details />} />
-        <Route path="/_app-admin" element={<UploadMedia />} />
-        <Route path="/_app-admin-login" element={<Login />} />
+        <Route path="/app-admin" element={<UploadMedia />} />
+        <Route path="/app-admin-login" element={<Login />} />
       </Routes>
     </Router>
   );
