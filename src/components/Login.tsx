@@ -33,7 +33,7 @@ const Login = () => {
   }, [navigate]);
 
   return (
-    <div className="min-h-screen  flex items-center justify-center bg-gray-100">
+    <div className="min-h-screen  flex items-center justify-center bg-gray-100 sm:px-3">
       <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-lg">
         <h2 className="text-2xl">Login Admin</h2>
         <form onSubmit={handleLogin}>
