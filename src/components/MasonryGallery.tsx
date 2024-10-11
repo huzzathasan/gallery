@@ -23,7 +23,7 @@ const MasonryGallery = () => {
   const fetchMedia = async (page: number) => {
     setLoading(true);
     try {
-      const result = await pb.collection("media").getList(page, 20);
+      const result = await pb.collection("media").getList(page, 20, {sort: "-created"});
       const fetchedItems = result.items.map((item) => ({
         id: item.id,
         collectionId: item.collectionId,
