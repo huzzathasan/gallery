@@ -16,7 +16,7 @@ const Login = () => {
       const authData = await pb
         .collection("users")
         .authWithPassword(email, password);
-      navigate("/_app-admin");
+      navigate("/app-admin");
       console.log("Logged in User: ", authData);
     } catch (error) {
       console.log("Invalid Email or Password", error);
@@ -28,7 +28,7 @@ const Login = () => {
 
   useEffect(() => {
     if (pb.authStore.isValid) {
-      navigate("/_app-admin");
+      navigate("/app-admin");
     }
   }, [navigate]);
 
