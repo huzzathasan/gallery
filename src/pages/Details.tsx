@@ -30,7 +30,7 @@ const Details = () => {
   return (
     <div className="min-h-screen w-full">
       <div className="max-w-md mx-auto relative block">
-        <div className="grid items-center justify-center w-full h-screen">
+        <div className="grid items-center justify-center w-full h-screen p-3">
           {data?.type === "image" ? (
             <img
               src={`${BaseUrl}/api/files/${data.collectionId}/${data.id}/${data.file}`}
