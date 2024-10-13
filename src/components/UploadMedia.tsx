@@ -18,6 +18,11 @@ const UploadMedia = () => {
   const [error, setError] = useState<string | null>(null);
   const [fileType, setFileType] = useState("");
   console.log(fileType);
+  // +++++ 13/10/24
+  const [publishDateTime, setPublishDateTime] = useState("");
+  const [caption, setCaption] = useState("");
+  console.log(publishDateTime, caption);
+  // +++++
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0] || null;
@@ -35,6 +40,10 @@ const UploadMedia = () => {
     const formData = new FormData();
     formData.append("file", file);
     formData.append("type", fileType);
+    // +++++ 13/10/24
+    formData.append("caption", caption),
+      formData.append("publish", publishDateTime);
+    // +++++
 
     try {
       const record = await pb.collection("media").create(formData);
@@ -81,6 +90,32 @@ const UploadMedia = () => {
         onChange={handleFileChange}
         className="mb-4 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-500 file:text-white hover:file:bg-blue-600"
       />
+      {/* ++++++ 13/10/24 */}
+      <label htmlFor="publish" className="mt-3 font-medium">
+        Publish Date-Time:
+      </label>
+      <input
+        type="datetime-local"
+        name="publish"
+        id="publish"
+        className="w-full py-2 mb-4 outline-none border bg-blue-500 text-white rounded-md px-3"
+        onChange={(e) => setPublishDateTime(e.target.value)}
+      />
+
+      <label htmlFor="caption" className="font-semibold">
+        Caption:
+      </label>
+      <textarea
+        name="caption"
+        id="caption"
+        cols={5}
+        rows={5}
+        className="w-full py-2 mb-4 outline-none border rounded-md px-3"
+        placeholder="Write you caption"
+        onChange={(e) => setCaption(e.target.value)}
+      ></textarea>
+
+      {/* ++++++ */}
       {error && <p className="text-red-500 mb-2">{error}</p>}
       <button
         disabled={uploading}
@@ -107,3 +142,4 @@ const UploadMedia = () => {
 };
 
 export default UploadMedia;
+
