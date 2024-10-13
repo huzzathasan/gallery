@@ -28,14 +28,18 @@ const Details = () => {
     fetchData();
   }, [id]);
 
-  const pu_date = new Date(data?.publish).toLocaleDateString("en-US", {
-    weekday: "long",
-    month: "long",
-    day: "numeric",
-    hour: "numeric",
-    minute: "numeric",
-    hour12: true,
-  });
+  const pu_date = data?.publish
+  ? new Date(data.publish).toLocaleDateString("en-US", {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    })
+  : "Date not available";
+
+
   console.log(pu_date);
   return (
     <div className="w-full">
