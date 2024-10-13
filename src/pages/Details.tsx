@@ -8,9 +8,10 @@ export interface MediaItem {
   collectionName: string;
   created: string;
   updated: string;
-  title: string;
+  caption: string;
   file: string;
   type?: "image" | "video";
+  publish: string;
 }
 
 const Details = () => {
@@ -27,10 +28,22 @@ const Details = () => {
     fetchData();
   }, [id]);
 
+  const pu_date = new Date(data?.publish).toLocaleDateString("en-US", {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  });
+  console.log(pu_date);
   return (
-    <div className="min-h-screen w-full">
+    <div className="w-full">
       <div className="max-w-md mx-auto relative block">
-        <div className="grid items-center justify-center w-full h-screen p-3">
+        <div className="grid items-start mt-2 justify-center px-3 lg:px-1 w-full h-full overflow-y-auto">
+          <p className="p-2 bg-blue-500 text-white my-1 rounded-md font-medium text-lg">
+            Publish on: {pu_date}
+          </p>
           {data?.type === "image" ? (
             <img
               src={`${BaseUrl}/api/files/${data.collectionId}/${data.id}/${data.file}`}
@@ -44,6 +57,7 @@ const Details = () => {
               className="object-cover aspect-video rounded-md"
             />
           )}
+          <p className="font-medium text-gray-700">{data?.caption}</p>
         </div>
       </div>
     </div>
